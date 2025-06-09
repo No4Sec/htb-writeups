@@ -1,0 +1,6 @@
+# HTB - Fluffy
+
+**Difficulty:** Medium  
+**IP:** 10.10.11.69  
+**OS:** Windows  
+**PrivEsc:** ESC16 (ADCS - UPN overwrite)
