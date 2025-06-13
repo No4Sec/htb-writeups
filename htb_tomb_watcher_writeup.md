@@ -28,6 +28,9 @@
 9389/tcp  open  mc-nmf        .NET Message Framing
 49666-49737/tcp több nyitott MSRPC port
 ```
+### SMB + clock-skew
+
+- SMB time/clock-skew: +6h59m (időszinkron kell Kerberoshoz!)
 
 ---
 
