@@ -30,9 +30,11 @@
 ```
 ### SMB + clock-skew
 
-- SMB time/clock-skew: +6h59m (időszinkron kell Kerberoshoz!)
+**Időszinkronizáció (fontos!):**
 
----
+```
+sudo rdate -n tombwatcher.htb
+```
 
 ## BloodHound, Kerberoasting, első user chain
 
