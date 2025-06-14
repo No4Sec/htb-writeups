@@ -1,4 +1,4 @@
-<h1 align="center">💣 HTB Writeups by NoSec 💣</h1>
+<h1 align="center">HTB Writeups by NoSec</h1>
 
 Welcome to my Hack The Box writeup collection.  
 Each machine is rooted manually, using realistic exploitation chains.  
