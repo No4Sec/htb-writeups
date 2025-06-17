@@ -27,6 +27,12 @@ PORT     STATE SERVICE       VERSION
 5985/tcp open  http          Microsoft HTTPAPI httpd 2.0
 Service Info: Host: DC01; OS: Windows
 ```
+### Clock-skew
+
+- Clock-skew: időszinkron kell Kerberoshoz!
+  ```bash
+  sudo rdate -n certificate.htb
+  ```
 
 ## Webes rész – RCE feltöltéssel
 
