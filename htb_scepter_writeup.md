@@ -4,7 +4,7 @@
 **Platform:** Windows  
 **IP:** 10.10.11.65  
 **Difficulty:** Hard  
-**Author:** No4Sec
+**Author:** NoSec
 
 ---
 
