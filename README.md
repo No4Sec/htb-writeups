@@ -12,7 +12,7 @@ No Metasploit autopwn – only real recon, abuse, and escalation.
 |-------------|------------|---------|------|
 | TombWatcher | Medium     | Windows | [TombWatcher Writeup](htb_tomb_watcher_writeup.md) |
 | The Frizz   | Medium     | Windows | [The Frizz Writeup](htb_the_frizz_writeup.md)     |
-| Scepter     | Hard       | Windows | [Sceptrr writeup](htb_scepter_writeup.ms)    |
+| Scepter     | Hard       | Windows | [Scepter writeup](htb_scepter_writeup.ms)    |
 ---
 
 ## 🚀 More coming soon...
