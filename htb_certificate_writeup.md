@@ -29,7 +29,7 @@ Service Info: Host: DC01; OS: Windows
 ```
 ### Clock-skew
 
-- Clock-skew: időszinkron kell Kerberoshoz!
+- Időszinkron kell Kerberoshoz!
   ```bash
   sudo rdate -n certificate.htb
   ```
