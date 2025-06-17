@@ -225,6 +225,7 @@ evil-winrm -i 10.10.11.71 -u Sara.B -p 'Bl******'
 ## PCAP elemzés – Kerberos hash
 
 - `WS-01_PktMon.pcap` (Kerberos forgalom)
+- A PCAP fájlban egy TGS-REQ látható, ahol Lion.SK kért ticketet. Ez használható Kerberoastinghoz, ha a szolgáltatás SPN-nel van regisztrálva. A Krb5RoastParser direkt AS-REQ vagy TGS-REQ hash-t szed ki.
 - `Krb5RoastParser` használat:
 >  https://github.com/jalvarezz13/Krb5RoastParser
 
