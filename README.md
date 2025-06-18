@@ -24,6 +24,8 @@ Each writeup is written in Hungarian and follows this structure:
 | The Frizz   | Medium     | Windows | [The Frizz Writeup](htb_the_frizz_writeup.md)     |
 | Scepter     | Hard       | Windows | [Scepter writeup](htb_scepter_writeup.md)    |
 | Certificate | Hard       | Windows | [Certificate writeup](htb_certificate_writeup.md)  |
+| Haze        | Hard       | Windows | Cooming soon! |
+| WhiteRabbit | Insane      | Linux   | Cooming soon!  |
 ---
 
 ## 🚀 More coming soon...
