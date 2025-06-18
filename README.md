@@ -1,8 +1,18 @@
-<h1 align="center">HTB Writeups by NoSec</h1>
+# 🛡️ NoSec HTB Writeups
 
-Welcome to my Hack The Box writeup collection.  
-Each machine is rooted manually, using realistic exploitation chains.  
-No Metasploit autopwn – only real recon, abuse, and escalation.
+Welcome to my collection of Hack The Box machine writeups.  
+All machines are solved legally and ethically for learning purposes only.
+
+## 📌 Structure
+
+Each writeup is written in Hungarian and follows this structure:
+
+- Recon
+- Initial Access
+- Privilege Escalation
+- Post Exploitation / Notes
+- Lessons learned
+
 
 ---
 
