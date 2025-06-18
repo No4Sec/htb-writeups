@@ -414,3 +414,4 @@ Mode                LastWriteTime         Length Name
 
 A Certificate gép egy kiváló ADCS kompromittációs gyakorló.   
 Ajánlott mindenkinek, aki modern AD / Red Teaming / Blue Teaming / PKI támadásokkal akar ismerkedni.
+Bármi kérdésed van, keress bizalommal.
