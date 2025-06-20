@@ -1,5 +1,5 @@
 **Platform:** Linux  
-**IP:** 10.10.11.XX 
+**IP:** 10.10.11.63
 **Difficulty:** Insane  
 **Author:** NoSec  
 
@@ -40,11 +40,11 @@ A whiterabbit.htb alatti /status/ végpontot brute-force-olva (pl. gobuster,ffuf
 - GoPhish: ddb0<link>.whiterabbit.htb
 - Wikijs: a668<link>.whiterabbit.htb
 
--**Webhookok nyomozása:**
+**Webhookok nyomozása:**
 
 A Wikijs endpoint ([redacted URL] egy webhookot mutatott az 28e<link>.whiterabbit.htb felé, ami gyanúsan nézett ki.
 
--**Kihasználás / Exploitation**
+**Kihasználás / Exploitation**
 
 SQLi a Webhookban
 
@@ -59,7 +59,7 @@ Az HMAC-ot a CyberChef-fel generáltam ([redacted URL] és egy teszt payloaddal 
 ```
 Láttam egy MySQL hibát, szóval sebezhető!
 
--**BurpSuite Automatizálás**
+**BurpSuite Automatizálás**
 
 Manuálisan lassú volt, ezért egy Burp kiterjesztést intéztem, ami automatikusan hozzáadja az HMAC fejlécet:
 
@@ -97,7 +97,7 @@ class BurpExtender(IBurpExtender, ISessionHandlingAction):
 ```
 Telepítve a Burp Custom Extensions-ben (https://www.pentestpartners.com/security-blog/burp-hmac-header-extensions-a-how-to/)
 
--**SQLmap Támadás**
+**SQLmap Támadás**
 
 Az SQLi-t sqlmap-mel automatizáltam:
 
@@ -110,7 +110,7 @@ sqlmap -u [redacted URL] POST --data '{"campaign_id":2,"email":"test@mail.com","
 | 103 | 2024-08-30 14:40:41 | `uname -a`                                             |
 | 110 | 2024-08-30 15:16:05 | `restic init --repo rest:[redacted URL] |
 
--**Jogosultság Növelés / Privilege Escalation**
+**Jogosultság Növelés / Privilege Escalation**
 
 -Restic Kihasználása
 
@@ -136,7 +136,7 @@ user.txt
 ```
 User flag pipa! 🚀
 
--**Neo Jelszó Generálás**
+**Neo Jelszó Generálás**
 
 A /opt/neo-password-generator/neopassword-generator binárist Ghidra-val néztem meg. A gettimeofday()-ot használja seedként:
 
@@ -193,5 +193,6 @@ Tesztelj mindent: Az HMAC kulcsot kétszer ellenőriztem, mielőtt sqlmap-et ind
 A WhiteRabbit egy menő gép, ami a webes kihasználástól a kreatív jogosultság-növelésig visz. Az Uptime Kuma, SQLi, Restic és a bináris analízis egy szuper mix, amit minden pentester kipróbálhat. User és root flag is megvan, szóval elégedett vagyok! 🚀
 
 Ajánlom mindenkinek, aki szereti a kihívásokat és az AD-s gépek helyett valami mást akar!
+Bárkinek kérdése van, nyugodtan keressen!
 
 
