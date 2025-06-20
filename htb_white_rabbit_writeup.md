@@ -179,23 +179,37 @@ root@whiterabbit:~# ls
 root.txt
 ```
 
-Jegyzetek & Magyarázat
-Mit tanultam ebből a gépről?
-Webhook és SQLi abuse: Az Uptime Kuma sebezhetőségei izgalmasak voltak, főleg az HMAC trükkökkel.
-Restic kihasználás: Hát, ki gondolta, hogy egy backup tool ennyire fel tudja pörgetni a jogosultságokat?
-Bináris analízis: A gettimeofday()-os jelszógenerálás bruteforce-olása igazi agytorna volt.
-Automatizálás: A Burp kiterjesztés és sqlmap combo nagyon megkönnyítette az életem.
+---
 
-Hibák, csapdák, tanácsok
-Időszinkron figyelj! Ha elcsúszik, az SSH vagy más lépések összeomlanak.
-Brute-force türelem: A /status/temp/-re sokáig kerestem, jó lista kell!
-Spoilermentes írás: Ne adj ki mindent, hadd élvezzék mások is a nyomozást.
-Tesztelj mindent: Az HMAC kulcsot kétszer ellenőriztem, mielőtt sqlmap-et indítottam.
+### 🧠 Jegyzetek & Magyarázat – Mit tanultam a gépből?
 
-Összegzés
-A WhiteRabbit egy menő gép, ami a webes kihasználástól a kreatív jogosultság-növelésig visz. Az Uptime Kuma, SQLi, Restic és a bináris analízis egy szuper mix, amit minden pentester kipróbálhat. User és root flag is megvan, szóval elégedett vagyok! 🚀
+- **Webhook & SQLi abuse:** Az Uptime Kuma sebezhetőségei izgalmasak voltak, főleg a custom HMAC trükközés miatt.  
+- **Restic kihasználás:** Meglepő volt, hogy egy sima backup tool milyen mértékű jogosultságemelést tud biztosítani.  
+- **Bináris analízis:** A `gettimeofday()` alapú jelszógenerálás bruteforce-olása kemény agytorna volt.  
+- **Automatizálás:** A Burp Suite és sqlmap kombó rengeteg időt spórolt, főleg a HMAC headerrel való szórakozásnál.
 
-Ajánlom mindenkinek, aki szereti a kihívásokat és az AD-s gépek helyett valami mást akar!
-Bárkinek kérdése van, nyugodtan keressen!
+---
+
+### ⚠️ Hibák, csapdák, tanácsok
+
+- **Időszinkronra figyelj!** Elcsúszott idő esetén az SSH vagy más lépések fail-elnek.  
+- **Bruteforce-hoz türelem kell!** A `/status/temp/` endpointot sokáig kerestem – fontos a jó lista.  
+- **Spoilermentesen dokumentálj!** Ne írj le mindent, más is élvezhesse a felfedezést.  
+- **Tesztelj újra mindent!** Az HMAC kulcsot például kétszer validáltam, mielőtt sqlmap-et futtattam volna.
+
+---
+
+### ✅ Összegzés
+
+A WhiteRabbit egy remekül összerakott gép: a webes kihasználásoktól egészen a kreatív jogosultság-eszkalációig visz.  
+Az Uptime Kuma, SQLi, Restic és bináris analízis kombója igazi pentester csemege volt.  
+Mindkét flag megszerezve – user is, root is – szóval elégedett vagyok. 🚀
+
+---
+
+**Ajánlom mindenkinek**, aki szereti a kihívásokat, és néha szívesebben törne kreatív Linuxos gépeket AD helyett.  
+Ha kérdésed van: keress bátran! 💬
+
+---
 
 
