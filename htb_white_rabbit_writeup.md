@@ -1,6 +1,9 @@
 **Platform:** Linux  
+
 **IP:** 10.10.11.63
+
 **Difficulty:** Insane  
+
 **Author:** NoSec  
 
 
