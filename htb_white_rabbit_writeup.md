@@ -1,8 +1,7 @@
 **Platform:** Linux  
 **IP:** 10.10.11.XX 
-
 **Difficulty:** Insane  
-**Szerző:** NoSec  
+**Author:** NoSec  
 
 
 ## Felderítés / Recon
