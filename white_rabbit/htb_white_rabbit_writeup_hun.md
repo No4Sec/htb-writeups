@@ -146,7 +146,7 @@ A /opt/neo-password-generator/neopassword-generator binárist Ghidra-val néztem
  -Számítás: tv_sec * 1000 + tv_usec / 1000 
  -20 karakteres jelszót generál rand() % 62-vel.
  
-Mivel a neo 2024-08-30 14:40:42-kor futtatta, a másodperceket tudom, de a mikromásodperceket bruteforce-olnom kellett (0-999). Egy Python szkriptetvhasználtam:
+Mivel a neo 2024-08-30 14:40:42-kor futtatta, a másodperceket tudom, de a mikromásodperceket bruteforce-olnom kellett (0-999). Egy Python szkriptet használtam:
 
 ```python
 from ctypes import CDLL
