@@ -166,7 +166,12 @@ Since Neo executed it at `2024-08-30 14:40:42`, I knew the `tv_sec`, but had to 
 Here’s a sample Python brute-force script:
 
 ```python
-# (Python bruteforce snippet shown earlier)
+from ctypes import CDLL
+import datetime
+libc = CDLL("libc.so.6")
+seconds = datetime.datetime(2024, 8, 30, 14, 40, 42, tzinfo=datetime.timezone.utc).timestamp()
+for i in range(0, 1000):
+    # [Itt a rand() logika lenne, C-vel pontosabb]
 ```
 
 Generated passwords were saved:
