@@ -220,6 +220,8 @@ evil-winrm -i 10.10.11.71 -u Sara.B -p 'Bl******'
 
 ## PCAP Analysis – Kerberos Hash Extraction
 
+>  https://github.com/jalvarezz13/Krb5RoastParser
+
 ```bash
 python krb5_roast_parser.py WS-01_PktMon.pcap as_req >> hash.txt
 ```
