@@ -51,7 +51,7 @@ I used a ZIP concatenation trick so that the actual PHP shell is appended at the
 
 1. Create a PHP reverse shell (`shell.php`)
    
- ```python
+ ```php
 <?php
 // php-reverse-shell - A Reverse Shell implementation in PHP. Comments stripped to slim it down. RE: https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php
 // Copyright (C) 2007 pentestmonkey@pentestmonkey.net
