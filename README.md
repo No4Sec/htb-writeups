@@ -2,10 +2,13 @@
 
 Welcome to my collection of Hack The Box machine writeups.  
 All machines are solved legally and ethically for learning purposes only.
+⚠️ Educational purpose only. No real flag/hash/password is shared.  
+Writeups are based on my own progress and understanding.  
+Respect HTB's rules. Support learning, not cheating.
 
 ## 📌 Structure
 
-Each writeup is written in Hungarian and follows this structure:
+Each writeup is written in Hungarian and Englisg, follows this structure:
 
 - Recon
 - Initial Access
