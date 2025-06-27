@@ -26,7 +26,7 @@ Each writeup is written in Hungarian and Englisg, follows this structure:
 | TombWatcher | Medium     | Windows | [TombWatcher Writeup](htb_tomb_watcher_writeup.md) |
 | The Frizz   | Medium     | Windows | [The Frizz Writeup](htb_the_frizz_writeup.md)     |
 | Scepter     | Hard       | Windows | [Scepter writeup](htb_scepter_writeup.md)    |
-| Certificate | Hard       | Windows | [Certificate writeup](https://github.com/No4Sec/htb-writeups/tree/main/certificate.md)  |
+| Certificate | Hard       | Windows | [Certificate writeup](https://github.com/No4Sec/htb-writeups/tree/main)  |
 | Haze        | Hard       | Windows | Cooming soon! |
 | WhiteRabbit | Insane      | Linux   | Cooming soon!  |
 ---
