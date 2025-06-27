@@ -1,6 +1,9 @@
 
 # HTB WhiteRabbit - Writeup (English)
 
+**> 🚨 Real-time HTB progress, leaks, and bonus tips → [t.me/nosecpwn](https://t.me/nosecpwn**)
+> Don't read. Join.
+
 **Platform:** Linux  
 **IP:** 10.10.11.63  
 **Difficulty:** Insane  
