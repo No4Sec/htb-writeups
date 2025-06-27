@@ -21,6 +21,10 @@ Each writeup is written in Hungarian and Englisg, follows this structure:
 
 ## 📌 Machines
 
+> 🚨 **Follow the HTB grind in real-time — leaks, drops, and deep writeups**  
+> 👉 [t.me/nosecpwn](https://t.me/nosecpwn)  
+> _Don't read. Join._
+
 | Name        | Difficulty | OS      | Link |
 |-------------|------------|---------|------|
 | TombWatcher | Medium     | Windows | [TombWatcher Writeup](https://github.com/No4Sec/htb-writeups/tree/main/tomb_watcher) |
