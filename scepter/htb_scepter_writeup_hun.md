@@ -310,7 +310,7 @@ Certipy v4.7.0 - by Oliver Lyak (ly4k)
 ## Cert szerzés
 
 ```bash
-certipy cert -pfx meow.pfx -nokey -out nosecpc.crt
+certipy cert -pfx nosecpc.pfx -nokey -out nosecpc.crt
 Certipy v4.7.0 - by Oliver Lyak (ly4k)
 
 [*] Writing certificate and  to 'nosecpc.crt'
