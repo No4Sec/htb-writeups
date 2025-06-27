@@ -23,12 +23,13 @@ Each writeup is written in Hungarian and Englisg, follows this structure:
 
 | Name        | Difficulty | OS      | Link |
 |-------------|------------|---------|------|
-| TombWatcher | Medium     | Windows | [TombWatcher Writeup](htb_tomb_watcher_writeup.md) |
-| The Frizz   | Medium     | Windows | [The Frizz Writeup](htb_the_frizz_writeup.md)     |
-| Scepter     | Hard       | Windows | [Scepter writeup](htb_scepter_writeup.md)    |
+| TombWatcher | Medium     | Windows | [TombWatcher Writeup](https://github.com/No4Sec/htb-writeups/tree/main/tomb_watcher) |
+| The Frizz   | Medium     | Windows | [The Frizz Writeup]https://github.com/No4Sec/htb-writeups/tree/main/the_frizz)     |
+| Scepter     | Hard       | Windows | [Scepter writeup](https://github.com/No4Sec/htb-writeups/tree/main/scepter)    |
 | Certificate | Hard       | Windows | [Certificate writeup](https://github.com/No4Sec/htb-writeups/tree/main/certificate)  |
+| WhiteRabbit | Insane      | Linux   |[White Rabbit writeup](https://github.com/No4Sec/htb-writeups/tree/main/white_rabbit) |             |
 | Haze        | Hard       | Windows | Cooming soon! |
-| WhiteRabbit | Insane      | Linux   | Cooming soon!  |
+
 ---
 
 ## 🚀 More coming soon...
