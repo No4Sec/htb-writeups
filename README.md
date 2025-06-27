@@ -33,6 +33,7 @@ Each writeup is written in Hungarian and Englisg, follows this structure:
 | Certificate | Hard       | Windows | [Certificate writeup](https://github.com/No4Sec/htb-writeups/tree/main/certificate)  |
 | WhiteRabbit | Insane      | Linux   |[White Rabbit writeup](https://github.com/No4Sec/htb-writeups/tree/main/white_rabbit) |             |
 | Haze        | Hard       | Windows | Cooming soon! |
+| Artificial  | Easy       | Linux   | Cooming soon! |
 
 ---
 
