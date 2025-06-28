@@ -3,6 +3,10 @@
 **Difficulty:** Easy\
 **Author:** NoSec
 
+> 🚨 **Follow the HTB grind in real-time — leaks, drops, and deep writeups**  
+> 👉 [t.me/nosecpwn](https://t.me/nosecpwn)  
+> _Don't read. Join._
+
 ---
 
 ## Recon
