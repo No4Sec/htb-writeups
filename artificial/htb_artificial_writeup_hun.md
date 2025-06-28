@@ -3,6 +3,10 @@
 **Difficulty:** Easy\
 **Author:** NoSec
 
+> 🚨 **Kövess élőben HTB-n — leakek, dropok és mély writeupok**  
+> 👉 [t.me/nosecpwn](https://t.me/nosecpwn)  
+> _Ne olvasd. Csatlakozz._
+
 ---
 
 ## Recon
