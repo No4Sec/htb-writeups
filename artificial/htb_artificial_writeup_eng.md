@@ -40,7 +40,7 @@ echo "10.10.11.74 artificial.htb" | sudo tee -a /etc/hosts
 
 The website provides login and registration functionality. After signing up, it allows uploading `.h5` files.
 
-### Generating a malicious TensorFlow model
+### Generating a malicious TensorFlow model(tenserflow-cpu==2.13.1 a requied)
 
 ```python
 # model_gen.py
