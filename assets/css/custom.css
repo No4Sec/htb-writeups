@@ -1,22 +1,23 @@
-.terminal,
-.terminal pre {
-  background: #1e1e1e !important;
-  color: #dddddd !important;
-  padding: 1rem !important;
-  border-radius: 10px !important;
-  font-family: 'Courier New', monospace !important;
-  font-size: 0.9rem !important;
-  overflow-x: auto;
-  margin-bottom: 1.5rem;
-  position: relative;
-  white-space: pre-wrap;
+body {
+  background-color: #1e1e1e;
+  color: #dcdcdc;
+  font-family: monospace;
+  margin: 0;
+  padding: 20px;
 }
 
-.terminal::before {
-  content: "🖥️ Terminal";
-  color: #bbb;
-  font-size: 0.75rem;
-  position: absolute;
-  top: 0.3rem;
-  left: 1rem;
+.terminal {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 20px;
+  color: #00ff00;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+pre {
+  margin: 0;
 }
