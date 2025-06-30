@@ -1,0 +1,6 @@
+title: "NoSec HTB Writeups"
+description: "Step-by-step Hack The Box walkthroughs — in English and Hungarian."
+baseurl: "" 
+url: "https://no4sec.github.io"
+markdown: kramdown
+theme: minima
