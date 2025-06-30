@@ -1,0 +1,19 @@
+.terminal {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 1rem;
+  border-radius: 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+.terminal::before {
+  content: "🖥️ Terminal";
+  color: #bbb;
+  font-size: 0.75rem;
+  position: absolute;
+  top: 0.3rem;
+  left: 1rem;
+}
