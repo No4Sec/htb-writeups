@@ -3,17 +3,19 @@ layout: default
 title: NoSec HTB Writeups
 ---
 
-# 💀 NoSec HTB Writeups
+# 🛡️ NoSec HTB Writeups
 
-Browse the writeups below.  
-Choose Hungarian 🇭🇺 or English 🇬🇧 version per machine.
+Follow the grind — real-time pwns, drops, and walkthroughs.  
+👉 [@nosecpwn](https://t.me/nosecpwn)
 
-<ul>
-  <li><a href="/htb-writeups/artificial/">Artificial</a></li>
-  <li><a href="/htb-writeups/certificate/">Certificate</a></li>
-  <li><a href="/htb-writeups/rusty_key/">Rusty Key</a></li>
-  <li><a href="/htb-writeups/scepter/">Scepter</a></li>
-  <li><a href="/htb-writeups/the_frizz/">The Frizz</a></li>
-  <li><a href="/htb-writeups/tomb_watcher/">Tomb Watcher</a></li>
-  <li><a href="/htb-writeups/white_rabbit/">White Rabbit</a></li>
-</ul>
+---
+
+## Machines
+
+- [Artificial](/htb-writeups/artificial)
+- [Certificate](/htb-writeups/certificate)
+- [Rusty Key](/htb-writeups/rusty_key)
+- [Scepter](/htb-writeups/scepter)
+- [The Frizz](/htb-writeups/the_frizz)
+- [TombWatcher](/htb-writeups/tomb_watcher)
+- [White Rabbit](/htb-writeups/white_rabbit)
