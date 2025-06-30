@@ -1,7 +1,9 @@
 ---
 layout: default
 title: Artificial
+permalink: /artificial/
 ---
+
 
 # 🧠 Artificial — Language / Nyelv
 
