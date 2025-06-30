@@ -12,7 +12,7 @@ Follow the grind — real-time pwns, drops, and walkthroughs.
 
 ## Machines
 
-- [Artificial](/artificial/index.md)
+- [Artificial](/artificial/)
 - [Certificate](/htb-writeups/certificate)
 - [Rusty Key](/htb-writeups/rusty_key)
 - [Scepter](/htb-writeups/scepter)
