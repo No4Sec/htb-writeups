@@ -1,14 +1,17 @@
-.terminal {
-  background: #1e1e1e;
-  color: #d4d4d4;
-  padding: 1rem;
-  border-radius: 10px;
-  font-family: 'Courier New', monospace;
-  font-size: 0.9rem;
+.terminal,
+.terminal pre {
+  background: #1e1e1e !important;
+  color: #dddddd !important;
+  padding: 1rem !important;
+  border-radius: 10px !important;
+  font-family: 'Courier New', monospace !important;
+  font-size: 0.9rem !important;
   overflow-x: auto;
   margin-bottom: 1.5rem;
   position: relative;
+  white-space: pre-wrap;
 }
+
 .terminal::before {
   content: "🖥️ Terminal";
   color: #bbb;
