@@ -1,5 +1,9 @@
 # 🛡️ NoSec HTB Writeups
 
+> 🚨 **Follow the HTB grind in real-time — leaks, drops, and deep writeups**  
+> 👉 [t.me/nosecpwn](https://t.me/nosecpwn)  
+> _Don't read. Join._
+
 Welcome to my collection of Hack The Box machine writeups.  
 All machines are solved legally and ethically for learning purposes only.
 ⚠️ Educational purpose only. No real flag/hash/password is shared.  
@@ -20,10 +24,6 @@ Each writeup is written in Hungarian and Englisg, follows this structure:
 ---
 
 ## 📌 Machines
-
-> 🚨 **Follow the HTB grind in real-time — leaks, drops, and deep writeups**  
-> 👉 [t.me/nosecpwn](https://t.me/nosecpwn)  
-> _Don't read. Join._
 
 | Name        | Difficulty | OS      | Link |
 |-------------|------------|---------|------|
