@@ -17,7 +17,8 @@ title: Artificial [EN]
 
 ## Recon
 
-<div class="terminal"
+<div class="terminal">
+<pre>
 nmap -sC -sV -T4 10.129.70.3
 
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-06-24 14:07 CEST
@@ -37,6 +38,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 12.15 seconds
+</pre>
 </div>
 
 **/etc/hosts edit:**
