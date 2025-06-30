@@ -17,7 +17,7 @@ title: Artificial [EN]
 
 ## Recon
 
-```bash
+```shell
 nmap -sC -sV -T4 10.129.70.3
 
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-06-24 14:07 CEST
