@@ -20,7 +20,6 @@ Each writeup is written in Hungarian and Englisg, follows this structure:
 - Post Exploitation / Notes
 - Lessons learned
 
-https://github.com/No4Sec/htb-writeups/tree/main/rusty_key
 
 ---
 
