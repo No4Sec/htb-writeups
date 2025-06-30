@@ -1,9 +1,7 @@
-
 ---
 layout: default
 title: Artificial [HU]
 ---
-
 
 **Platform:** Linux\
 **IP:** 10.10.11.74\
