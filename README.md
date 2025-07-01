@@ -1,7 +1,8 @@
 # 🛡️ NoSec HTB Writeups
 
 > 🚨 **Follow the HTB grind in real-time — leaks, drops, and deep writeups**  
-> 👉 [t.me/nosecpwn](https://t.me/nosecpwn)  
+> 👉 [t.me/nosecpwn](https://t.me/nosecpwn)
+> My website https://nosecpwn.eu
 > _Don't read. Join._
 
 Welcome to my collection of Hack The Box machine writeups.  
